@@ -16,4 +16,9 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static final int rightFollowerDrivebasePort = 99;
+  public static final int rightLeadDrivebasePort = 99;
+  public static final int leftLeadDrivebasePort = 99;
+  public static final int leftFollowerDrivebasePort = 99;
 }
