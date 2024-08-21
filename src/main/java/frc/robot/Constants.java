@@ -21,4 +21,7 @@ public final class Constants {
   public static final int rightLeadDrivebasePort = 5;
   public static final int leftLeadDrivebasePort = 1;
   public static final int leftFollowerDrivebasePort = 2;
+
+  public static final int shooterPort = 4;
+  public static final int indexerPort = 3;
 }
