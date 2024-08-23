@@ -59,22 +59,16 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     m_drivetrain.setDefaultCommand(m_drivetrain.drive(m_driverController::getLeftY, m_driverController::getRightY));
 
-    m_driverController.rightTrigger()
-        .whileTrue(m_shooter.spinUp())
-        .onFalse(m_shooter.slowDown());
-
-    m_driverController.rightBumper()
-        .whileTrue(Commands.parallel(m_shooter.intake(), m_indexer.intake()));
-
+    m_driverController.rightBumper().whileTrue(Commands.parallel(m_shooter.intake(), m_indexer.intake()));
     m_driverController.leftBumper()
-        .whileTrue(m_shooter.shoot().withTimeout(2)
-        .andThen(Commands.parallel(m_shooter.shoot(), m_indexer.shoot())));
-}
+        .whileTrue(m_shooter.shoot().withTimeout(2).andThen(Commands.parallel(m_shooter.shoot(), m_indexer.shoot())));
+  }
 
 
 
