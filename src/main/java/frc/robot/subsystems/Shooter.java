@@ -4,12 +4,12 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private CANSparkMax m_motor = new CANSparkMax(Constants.shooterPort, MotorType.kBrushed);
+  private final CANSparkMax m_motor = new CANSparkMax(Constants.shooterPort, MotorType.kBrushed);
 
   public Shooter() {}
 
@@ -21,13 +21,13 @@ public class Shooter extends SubsystemBase {
     return run(() -> m_motor.setVoltage(-12));
   }
 
-  // Method to spin up the shooter (full speed)
+  // Method to spin up the shooter (continuously run while the command is active)
   public Command spinUp() {
-    return new InstantCommand(() -> m_motor.setVoltage(12), this);
+    return new RunCommand(() -> m_motor.setVoltage(12), this);
   }
 
-  // Method to slow down the shooter (stop)
+  // Method to slow down the shooter (stops the motor when the command ends)
   public Command slowDown() {
-    return new InstantCommand(() -> m_motor.setVoltage(0), this);
+    return new RunCommand(() -> m_motor.setVoltage(0), this);
   }
 }
