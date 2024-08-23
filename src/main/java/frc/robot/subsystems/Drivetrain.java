@@ -23,7 +23,7 @@ public class Drivetrain extends SubsystemBase {
     m_leftLeadMotor = new CANSparkMax(Constants.leftLeadDrivebasePort, MotorType.kBrushed);
     m_leftFollowerMotor = new CANSparkMax(Constants.leftFollowerDrivebasePort, MotorType.kBrushed);
     m_leftFollowerMotor.follow(m_leftLeadMotor);
-    m_leftLeadMotor.setInverted(true);
+    m_leftLeadMotor.setInverted(false);
   }
 
   public Command drive(DoubleSupplier left, DoubleSupplier right) {
