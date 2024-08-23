@@ -34,4 +34,11 @@ public class Drivetrain extends SubsystemBase {
       m_rightLeadMotor.set(rightnew);
     }, this);
   }
+
+  public Command stop() {
+    return Commands.run(() -> {
+      m_rightLeadMotor.stopMotor();
+      m_leftLeadMotor.stopMotor();
+    }, this);
+  } 
 }

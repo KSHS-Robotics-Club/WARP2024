@@ -75,8 +75,15 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public Command getAutonomousCommand(String chosen) {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    switch (chosen) {
+      case "Taxi":
+        return Autos.Taxi(m_drivetrain, m_shooter);
+      case "Shoot":
+        return Autos.Shoot(m_shooter);
+      default:
+        return Autos.Taxi(m_drivetrain, m_shooter);
+    }
   }
 }
