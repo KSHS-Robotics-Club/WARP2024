@@ -11,6 +11,9 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Drivetrain;
+
+import java.util.Set;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -62,11 +65,15 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
+    m_indexer.setDefaultCommand(m_indexer
+    .stop());
+    m_shooter.setDefaultCommand(m_shooter
+    .stop());
 
     m_drivetrain.setDefaultCommand(m_drivetrain.drive(m_driverController::getLeftY, m_driverController::getRightY));
 
-    m_driverController.rightBumper().whileTrue(Commands.parallel(m_shooter.intake(), m_indexer.intake()));
-    m_driverController.leftBumper()
+    m_driverController.leftBumper().whileTrue(Commands.parallel(m_shooter.intake(), m_indexer.intake()));
+    m_driverController.rightBumper()
         .whileTrue(m_shooter.shoot().withTimeout(2).andThen(Commands.parallel(m_shooter.shoot(), m_indexer.shoot())));
   }
 
@@ -78,8 +85,17 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public Command getAutonomousCommand(String chosen) {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    switch (chosen) {
+      case "Taxi":
+        return Autos.Taxi(m_drivetrain, m_shooter);
+      case "Shoot":
+        return m_shooter.shoot().withTimeout(2).andThen(Commands.parallel(m_shooter.shoot(), m_indexer.shoot()));
+      case "Shoot + Taxi":
+        return m_shooter.shoot().withTimeout(2).andThen(Commands.parallel(m_shooter.shoot(), m_indexer.shoot()).withTimeout(2)).andThen(m_drivetrain.drive(() -> 1, () -> 1).withTimeout(1.5));
+      default:
+              return m_shooter.shoot().withTimeout(2).andThen(Commands.parallel(m_shooter.shoot(), m_indexer.shoot()).withTimeout(2)).andThen(m_drivetrain.drive(() -> -1, () -> - 1).withTimeout(1.5));
+    }
   }
 }
