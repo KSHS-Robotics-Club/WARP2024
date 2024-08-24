@@ -1,7 +1,7 @@
 # KSHS-Robotics-Club 2024 Codebase
 
 Our code for the 2024 FRC game, CRESCENDO, using Gradle and Java. 
-To get started follow the setup instructions and read more in CONTRIBUTING.md.
+To get started follow the setup instructions and read more in [CONTRIBUTING.md](https://github.com/KSHS-Robotics-Club/WARP2024/blob/master/CONTRIBUTING.md).
 ## Setup
 
 First install [WPILib](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/wpilib-setup.html) and if running Windows the [FRC game tools](https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/frc-game-tools.html). Instructions can be found here.
@@ -15,7 +15,7 @@ chmod +x init.sh
 ./init.sh
 ```
 
-Now look in CONTRIBUTING.md before continuing!
+Now look in [CONTRIBUTING.md](https://github.com/KSHS-Robotics-Club/WARP2024/blob/master/CONTRIBUTING.md) before continuing!
 
 ## Windows
 
