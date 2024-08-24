@@ -39,6 +39,8 @@ public class Robot extends TimedRobot {
     m_autoSelector.addOption("Taxi", "taxi");
     m_autoSelector.addOption("Shoot", "shoot");
     m_autoSelector.setDefaultOption("Taxi", "taxi");
+    m_autoSelector.setDefaultOption("Shoot+ Taxi", "Shoot + Taxi");
+
     
     SmartDashboard.putData(m_autoSelector);
 

@@ -31,8 +31,8 @@ public class Drivetrain extends SubsystemBase {
     return Commands.run(() -> {
       var leftnew = MathUtil.applyDeadband(left.getAsDouble(), 0.05);
       var rightnew = MathUtil.applyDeadband(right.getAsDouble(), 0.05);
-      m_leftLeadMotor.set(leftnew);
-      m_rightLeadMotor.set(rightnew);
+      m_leftLeadMotor.set(leftnew * 0.6);
+      m_rightLeadMotor.set(rightnew * 0.6);
     }, this);
   }
 
