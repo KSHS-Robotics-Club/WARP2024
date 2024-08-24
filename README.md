@@ -10,7 +10,7 @@ Fork this repository then open up a terminal and run :
 
 ```
 git clone https://github.com/*yourusernamehere*/WARP2024.git
-cd 2024-Crescendo
+cd WARP2024
 chmod +x init.sh
 ./init.sh
 ```
