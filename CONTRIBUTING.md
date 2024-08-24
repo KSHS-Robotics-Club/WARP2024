@@ -1,5 +1,5 @@
 # Contributing to our 2024 Codebase.
-This guide assumes you have already read the README.
+This guide assumes you have already read the [README](https://github.com/KSHS-Robotics-Club/WARP2024/blob/master/README.md).
 
 ## Git
 Whenever you start on something new create a new branch from your master branch. The branch name should describe what it aims to achieve. When you are done you should open a pull request to WARP2024 master.
@@ -20,4 +20,4 @@ Issues should be created to report bugs or request features. Use the appropriate
 Pull requests should be created to resolve issues. Reference the issue you are resolving in your pull request. Pull requests are required to pass continuous integration checks that run automatically. This will include formatting, tests and build checks.
 
 ## End
-Good luck on your contribution trip, this may be used as a template for the 2025 CONTRIBUTING.md .
+Good luck on your contribution trip, this may be used as a template for the 2025 [CONTRIBUTING.md](https://github.com/KSHS-Robotics-Club/WARP2024/blob/master/CONTRIBUTING.md).
