@@ -61,6 +61,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
+  private boolean isHalfSpeed = false; //Half speed modification
+
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
@@ -70,7 +72,26 @@ public class RobotContainer {
     m_shooter.setDefaultCommand(m_shooter
     .stop());
 
-    m_drivetrain.setDefaultCommand(m_drivetrain.drive(m_driverController::getLeftY, m_driverController::getRightY));
+    // Toggle speed mode with A button
+
+    m_driverController.a().onTrue(Commands.runOnce(() -> {
+      isHalfSpeed = !isHalfSpeed;
+      System.out.println("Speed mode: " + (isHalfSpeed ? "Half" : "Full"));
+    }));
+
+    // Modify the default command for the drivetrain
+
+    m_drivetrain.setDefaultCommand(
+
+        m_drivetrain.drive(
+
+            () -> isHalfSpeed ? m_driverController.getLeftY() * 0.5 : m_driverController.getLeftY(),
+
+            () -> isHalfSpeed ? m_driverController.getRightY() * 0.5 : m_driverController.getRightY()
+
+        )
+
+    );
 
     m_driverController.leftBumper().whileTrue(Commands.parallel(m_shooter.intake(), m_indexer.intake()));
     m_driverController.rightBumper()
